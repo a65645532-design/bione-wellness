@@ -205,7 +205,7 @@ const S={
   set:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
 };
 
-function getCfg(){ return S.get('b1_cfg',{pw:ADMIN_PW_DEFAULT,instructor:'정윤희',defaultPrice:20000,defaultCap:10}); }
+function getCfg(){ return S.get('b1_cfg',{pw:ADMIN_PW_DEFAULT,instructor:'정윤희',defaultPrice:35000,defaultCap:10}); }
 function getClasses(){ const c=S.get('b1_cls',null);if(!c){const g=genSched();S.set('b1_cls',g);return g;}return c; }
 function saveClasses(c){ S.set('b1_cls',c); }
 function getBookings(){ return S.get('b1_bkg',[]); }

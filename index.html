@@ -8,157 +8,175 @@
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap');
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
     :root{
-      --bg:#F0EDE6;
-      --surface:#FAFAF7;
-      --green:#4A7360;--green-mid:#5D8C74;--green-light:#E8EFE9;--green-dark:#2E5243;
-      --blush:#C9A89C;--blush-light:#F5EEEB;
-      --gold:#B8893A;--gold-light:#F7F0E3;
-      --aroma:#7B6FA0;--aroma-light:#F0EDF8;
-      --stretch:#C47B55;--stretch-light:#F7EDE5;
-      --text:#1E2820;--text-mid:#5A5A5A;--text-sub:#9A9A9A;
-      --border:#DDD9D0;--border-light:#EAE6DF;
-      --danger:#C05858;--radius:16px;
-      --shadow:0 2px 16px rgba(30,40,32,.07);
-      --shadow-sm:0 1px 6px rgba(30,40,32,.05)
+      --bg:#F0EDE6;--surface:#FAFAF7;
+      --green:#4A7360;--gm:#5D8C74;--gl:#E8EFE9;--gd:#2E5243;
+      --blush:#C9A89C;--bl:#F5EEEB;
+      --gold:#B8893A;--gol:#F7F0E3;
+      --aroma:#7B6FA0;--al:#F0EDF8;
+      --stretch:#C47B55;--sl:#F7EDE5;
+      --text:#1E2820;--tm:#5A5A5A;--ts:#9A9A9A;
+      --border:#DDD9D0;--bl2:#EAE6DF;
+      --danger:#C05858;--warn:#D4784A;
+      --r:14px;--sh:0 2px 16px rgba(30,40,32,.07);--ss:0 1px 6px rgba(30,40,32,.05)
     }
     body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto}
-    #app{min-height:100vh;display:flex;flex-direction:column;position:relative}
+    #app{min-height:100vh;display:flex;flex-direction:column}
+    .hdr{background:var(--surface);padding:13px 17px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bl2);position:sticky;top:0;z-index:100}
+    .wm{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gd);letter-spacing:.5px}
+    .hs{font-size:11px;color:var(--ts);margin-top:1px}
+    .bt{background:none;border:none;color:var(--ts);font-size:12px;padding:5px 8px;cursor:pointer}
+    .content{flex:1;padding:16px 14px 86px}
+    .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--surface);border-top:1px solid var(--bl2);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
+    .ni{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 0 11px;cursor:pointer;border:none;background:none;color:var(--ts);font-size:9px;gap:2px;letter-spacing:.2px}
+    .ni.on{color:var(--green)}
+    .ni-ic{font-size:19px}
+    .card{background:var(--surface);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:10px;border:1px solid var(--bl2)}
 
-    /* ── 헤더 ── */
-    .header{background:var(--surface);padding:14px 18px 13px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-light);position:sticky;top:0;z-index:100}
-    .header-wordmark{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--green-dark);letter-spacing:.6px}
-    .header-dot{color:var(--blush)}
-    .header-sub{font-size:11px;color:var(--text-sub);margin-top:1px;letter-spacing:.2px}
-    .btn-text{background:none;border:none;color:var(--text-sub);font-size:12px;padding:5px 8px;cursor:pointer;letter-spacing:.1px}
+    /* 수업 카드 */
+    .cc{background:var(--surface);border-radius:var(--r);padding:13px 15px;box-shadow:var(--ss);margin-bottom:9px;border:1px solid var(--bl2);border-left:3px solid var(--gm)}
+    .cc.aroma{border-left-color:var(--aroma)}.cc.stretch{border-left-color:var(--stretch)}.cc.special{border-left-color:var(--gold);background:var(--gol)}
+    .cn{font-size:15px;font-weight:700;margin-bottom:3px;letter-spacing:-.2px}
+    .cm{font-size:12px;color:var(--tm);line-height:1.7}
+    .crow{display:flex;justify-content:space-between;align-items:flex-start}
 
-    /* ── 레이아웃 ── */
-    .content{flex:1;padding:18px 15px 88px}
-    .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--surface);border-top:1px solid var(--border-light);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
-    .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 0 12px;cursor:pointer;border:none;background:none;color:var(--text-sub);font-size:9px;gap:3px;letter-spacing:.3px;text-transform:uppercase}
-    .nav-item.active{color:var(--green)}
-    .nav-icon{font-size:20px}
+    /* 특별 배너 */
+    .sb{background:linear-gradient(140deg,var(--gd),#3A6855 60%,#5C8970);border-radius:var(--r);padding:16px;margin-bottom:14px;color:white;position:relative;overflow:hidden;box-shadow:0 6px 24px rgba(46,82,67,.25)}
+    .sb::before{content:'';position:absolute;right:-10px;top:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.06)}
+    .sbadge{display:inline-flex;align-items:center;background:rgba(255,255,255,.18);border-radius:20px;padding:2px 9px;font-size:10px;font-weight:700;margin-bottom:7px;letter-spacing:.4px}
+    .sn{font-size:18px;font-weight:800;margin-bottom:4px}
+    .sm{font-size:12px;opacity:.85;line-height:1.7}
+    .sp{font-size:14px;font-weight:700;margin-top:5px}
 
-    /* ── 공통 카드 ── */
-    .card{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:12px;border:1px solid var(--border-light)}
+    /* 버튼 */
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:10px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;gap:4px}
+    .bp{background:var(--green);color:white}.bp:active{background:var(--gd)}.bp:disabled{background:var(--border);color:var(--ts);cursor:not-allowed}
+    .bo{background:none;border:1.5px solid var(--border);color:var(--text)}
+    .bd{background:none;border:1.5px solid var(--danger);color:var(--danger)}
+    .bw{background:none;border:1.5px solid var(--warn);color:var(--warn)}
+    .bfull{width:100%;padding:13px;border-radius:12px;font-size:15px}
+    .bsm{padding:6px 12px;font-size:12px;border-radius:8px}
+    .bapp{background:#E8F4ED;color:var(--gd);border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
+    .brej{background:#fdf0f0;color:var(--danger);border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
 
-    /* ── 특별 클래스 배너 ── */
-    .special-banner{background:linear-gradient(140deg,var(--green-dark) 0%,#3A6855 60%,#5C8970 100%);border-radius:var(--radius);padding:18px 16px;margin-bottom:16px;color:white;position:relative;overflow:hidden;box-shadow:0 6px 24px rgba(46,82,67,.25)}
-    .special-banner::before{content:'';position:absolute;right:-10px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06)}
-    .special-banner::after{content:'';position:absolute;right:20px;bottom:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.04)}
-    .special-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.18);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;margin-bottom:9px;letter-spacing:.5px}
-    .special-name{font-size:19px;font-weight:800;margin-bottom:5px;position:relative;z-index:1}
-    .special-meta{font-size:12px;opacity:.85;position:relative;z-index:1;line-height:1.7}
-    .special-price{font-size:15px;font-weight:700;margin-top:6px;opacity:.95;position:relative;z-index:1}
+    /* 폼 */
+    .fg{margin-bottom:13px}
+    .fl{display:block;font-size:11px;font-weight:700;color:var(--ts);margin-bottom:5px;letter-spacing:.3px;text-transform:uppercase}
+    .fi{width:100%;padding:11px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;background:var(--surface);color:var(--text);outline:none;-webkit-appearance:none;font-family:inherit}
+    .fi:focus{border-color:var(--green)}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 
-    /* ── 수업 카드 (카테고리 컬러) ── */
-    .class-card{background:var(--surface);border-radius:var(--radius);padding:15px 16px;box-shadow:var(--shadow-sm);margin-bottom:10px;border:1px solid var(--border-light);border-left:3px solid var(--green-mid)}
-    .class-card.aroma{border-left-color:var(--aroma)}
-    .class-card.stretch{border-left-color:var(--stretch)}
-    .class-card.special{border-left-color:var(--gold);background:var(--gold-light)}
-    .class-name{font-size:15px;font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
-    .class-meta{font-size:12px;color:var(--text-mid);line-height:1.7}
-    .class-row{display:flex;justify-content:space-between;align-items:flex-start}
-    .capacity-pill{display:inline-flex;align-items:center;font-size:11px;color:var(--text-sub);background:var(--bg);padding:3px 9px;border-radius:20px;margin-top:8px;border:1px solid var(--border-light)}
-    .capacity-pill.few{color:var(--stretch);background:var(--stretch-light);border-color:transparent}
-    .capacity-pill.full{color:var(--danger);background:#fdf0f0;border-color:transparent}
+    /* 로그인 */
+    .lw{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;background:var(--bg)}
+    .ll{text-align:center;margin-bottom:32px}
+    .lv{font-size:50px;margin-bottom:10px;display:block}
+    .lt{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gd);letter-spacing:1px}
+    .ls{font-size:11px;color:var(--ts);margin-top:4px;letter-spacing:.7px}
+    .ltab{display:flex;background:var(--bl2);border-radius:11px;padding:3px;margin-bottom:18px;width:100%}
+    .ltb{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;border-radius:8px;color:var(--ts);border:none;background:none;transition:all .2s}
+    .ltb.on{background:var(--surface);color:var(--gd);box-shadow:0 1px 8px rgba(0,0,0,.08)}
+    .lbox{background:var(--surface);border-radius:var(--r);padding:20px;width:100%;box-shadow:var(--sh);border:1px solid var(--bl2)}
+    .lhint{text-align:center;font-size:11px;color:var(--ts);margin-top:10px;line-height:1.5}
 
-    /* ── 버튼 ── */
-    .btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;gap:5px}
-    .btn-primary{background:var(--green);color:white}
-    .btn-primary:active{background:var(--green-dark)}
-    .btn-primary:disabled{background:var(--border);color:var(--text-sub);cursor:not-allowed}
-    .btn-outline{background:none;border:1.5px solid var(--border);color:var(--text)}
-    .btn-danger{background:none;border:1.5px solid var(--danger);color:var(--danger)}
-    .btn-full{width:100%;padding:14px;border-radius:12px;font-size:15px}
-    .btn-sm{padding:7px 13px;font-size:12px;border-radius:9px}
+    /* 날짜 칩 */
+    .dchips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none}
+    .dchips::-webkit-scrollbar{display:none}
+    .dchip{flex-shrink:0;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--ts);transition:all .2s}
+    .dchip.on{background:var(--gd);border-color:var(--gd);color:white}
 
-    /* ── 폼 ── */
-    .form-group{margin-bottom:15px}
-    .form-label{display:block;font-size:11px;font-weight:700;color:var(--text-sub);margin-bottom:5px;letter-spacing:.4px;text-transform:uppercase}
-    .form-input{width:100%;padding:12px 13px;border:1.5px solid var(--border);border-radius:11px;font-size:15px;background:var(--surface);color:var(--text);outline:none;-webkit-appearance:none;font-family:inherit}
-    .form-input:focus{border-color:var(--green)}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    /* 섹션 타이틀 */
+    .st{font-size:13px;font-weight:700;margin-bottom:9px;color:var(--tm);letter-spacing:.2px}
 
-    /* ── 로그인 ── */
-    .login-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 22px;background:var(--bg)}
-    .login-logo{text-align:center;margin-bottom:36px}
-    .login-visual{font-size:52px;margin-bottom:12px;display:block}
-    .login-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--green-dark);letter-spacing:1px}
-    .login-sub{font-size:12px;color:var(--text-sub);margin-top:5px;letter-spacing:.8px}
-    .login-tabs{display:flex;background:var(--border-light);border-radius:12px;padding:3px;margin-bottom:20px;width:100%}
-    .login-tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;border-radius:9px;color:var(--text-sub);border:none;background:none;transition:all .2s;letter-spacing:.2px}
-    .login-tab.active{background:var(--surface);color:var(--green-dark);box-shadow:0 1px 8px rgba(0,0,0,.08)}
-    .login-box{background:var(--surface);border-radius:var(--radius);padding:22px;width:100%;box-shadow:var(--shadow);border:1px solid var(--border-light)}
-    .login-hint{text-align:center;font-size:11px;color:var(--text-sub);margin-top:12px;line-height:1.6}
+    /* 통계 */
+    .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+    .scard{background:var(--surface);border-radius:13px;padding:12px 7px;text-align:center;box-shadow:var(--ss);border:1px solid var(--bl2)}
+    .snum{font-size:22px;font-weight:900;color:var(--gd)}
+    .slb{font-size:10px;color:var(--ts);margin-top:1px}
 
-    /* ── 날짜 칩 ── */
-    .date-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:none}
-    .date-chips::-webkit-scrollbar{display:none}
-    .date-chip{flex-shrink:0;padding:7px 13px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-sub);transition:all .2s}
-    .date-chip.active{background:var(--green-dark);border-color:var(--green-dark);color:white}
+    /* ── 달력 ── */
+    .cal-wrap{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--bl2);overflow:hidden;margin-bottom:14px}
+    .cal-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--bl2)}
+    .cal-title{font-size:16px;font-weight:800;color:var(--gd)}
+    .cal-nav{background:none;border:none;font-size:20px;color:var(--tm);cursor:pointer;padding:2px 8px}
+    .cal-days{display:grid;grid-template-columns:repeat(7,1fr)}
+    .cal-dh{text-align:center;font-size:10px;font-weight:700;color:var(--ts);padding:7px 0;letter-spacing:.2px}
+    .cal-dh.sun{color:#C05858}.cal-dh.sat{color:#4A7360}
+    .cal-cell{min-height:52px;padding:4px 2px;cursor:pointer;border-top:1px solid var(--bl2);position:relative;transition:background .15s;display:flex;flex-direction:column;align-items:center}
+    .cal-cell:hover{background:var(--gl)}
+    .cal-cell.on{background:var(--gl)}
+    .cal-cell.today .cal-dn{background:var(--gd);color:white;border-radius:50%}
+    .cal-cell.closed{background:#FFF5F5}
+    .cal-cell.closed .cal-dn{color:var(--danger)}
+    .cal-cell.other .cal-dn{color:var(--border)}
+    .cal-cell.sun .cal-dn{color:#C05858}
+    .cal-cell.sat .cal-dn{color:#4A7360}
+    .cal-dn{font-size:13px;font-weight:700;width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+    .cal-dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;margin-top:1px;max-width:36px}
+    .cal-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+    .cal-dot.g{background:var(--gm)}
+    .cal-dot.p{background:#E8B46A}
+    .cal-dot.r{background:var(--danger)}
+    .cal-closed-tag{font-size:9px;color:var(--danger);font-weight:700;margin-top:1px}
+    .cal-pending{position:absolute;top:3px;right:3px;background:var(--danger);color:white;font-size:9px;font-weight:700;border-radius:9px;padding:1px 5px;min-width:16px;text-align:center}
 
-    /* ── 섹션 타이틀 ── */
-    .section-title{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--text-mid);letter-spacing:.3px}
+    /* 달력 하단 수업 목록 */
+    .day-panel{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--bl2);overflow:hidden}
+    .day-panel-hdr{padding:12px 14px;background:var(--gl);border-bottom:1px solid var(--bl2);display:flex;align-items:center;justify-content:space-between}
+    .day-panel-title{font-size:14px;font-weight:700;color:var(--gd)}
 
-    /* ── 통계 ── */
-    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
-    .stat-card{background:var(--surface);border-radius:14px;padding:14px 8px;text-align:center;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
-    .stat-num{font-size:24px;font-weight:900;color:var(--green-dark)}
-    .stat-label{font-size:10px;color:var(--text-sub);margin-top:2px;letter-spacing:.2px}
+    /* 결제 선택 */
+    .popts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+    .popt{border:2px solid var(--border);border-radius:13px;padding:14px 9px;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface)}
+    .popt.on{border-color:var(--green);background:var(--gl)}
+    .popt.dis{opacity:.4;cursor:not-allowed;pointer-events:none}
+    .pic{font-size:24px;margin-bottom:5px}
+    .plb{font-size:13px;font-weight:700}
+    .pds{font-size:11px;color:var(--ts);margin-top:2px}
+    .psoon{font-size:10px;font-weight:700;color:var(--ts);background:var(--bg);padding:2px 7px;border-radius:8px;display:inline-block;margin-top:4px}
 
-    /* ── 모달 ── */
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:flex;align-items:flex-end;animation:fadeIn .2s}
-    .modal{background:var(--surface);border-radius:22px 22px 0 0;padding:22px 18px 44px;width:100%;max-width:480px;margin:0 auto;max-height:88vh;overflow-y:auto;animation:slideUp .28s}
-    .modal-handle{width:34px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px}
-    .modal-title{font-size:17px;font-weight:800;margin-bottom:18px;letter-spacing:-.2px}
-    @keyframes fadeIn{from{opacity:0}}
-    @keyframes slideUp{from{transform:translateY(100%)}}
+    /* 배지 */
+    .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700}
+    .bg{background:var(--gl);color:var(--gd)}
+    .bo2{background:var(--gol);color:var(--gold)}
+    .bb{background:var(--bl);color:#8A5A50}
+    .br{background:#fdf0f0;color:var(--danger)}
+    .bw2{background:#FFF3EC;color:var(--warn)}
+    .bgr{background:var(--bg);color:var(--ts)}
 
-    /* ── 결제 선택 옵션 ── */
-    .pay-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-    .pay-option{border:2px solid var(--border);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface)}
-    .pay-option.selected{border-color:var(--green);background:var(--green-light)}
-    .pay-option.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
-    .pay-icon{font-size:26px;margin-bottom:6px}
-    .pay-label{font-size:13px;font-weight:700;color:var(--text)}
-    .pay-desc{font-size:11px;color:var(--text-sub);margin-top:3px}
-    .pay-soon{font-size:10px;font-weight:700;color:var(--text-sub);background:var(--bg);padding:2px 8px;border-radius:10px;display:inline-block;margin-top:5px}
+    /* 모달 */
+    .mover{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:flex;align-items:flex-end;animation:fi .2s}
+    .modal{background:var(--surface);border-radius:22px 22px 0 0;padding:20px 16px 42px;width:100%;max-width:480px;margin:0 auto;max-height:90vh;overflow-y:auto;animation:su .27s}
+    .mh{width:32px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px}
+    .mt{font-size:17px;font-weight:800;margin-bottom:16px;letter-spacing:-.2px}
+    @keyframes fi{from{opacity:0}}@keyframes su{from{transform:translateY(100%)}}
 
-    /* ── 배지 ── */
-    .badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700}
-    .badge-green{background:var(--green-light);color:var(--green-dark)}
-    .badge-gold{background:var(--gold-light);color:var(--gold)}
-    .badge-blush{background:var(--blush-light);color:#8A5A50}
-    .badge-red{background:#fdf0f0;color:var(--danger)}
-    .badge-gray{background:var(--bg);color:var(--text-sub)}
+    /* 빈 상태 */
+    .empty{text-align:center;padding:36px 18px;color:var(--ts)}
+    .ei{font-size:42px;margin-bottom:9px;opacity:.6}
+    .et{font-size:14px;font-weight:600}
+    .es{font-size:12px;margin-top:3px}
 
-    /* ── 빈 상태 ── */
-    .empty{text-align:center;padding:44px 20px;color:var(--text-sub)}
-    .empty-icon{font-size:44px;margin-bottom:10px;opacity:.6}
-    .empty-text{font-size:14px;font-weight:600}
-    .empty-sub{font-size:12px;margin-top:4px}
+    /* 예약 리스트 행 */
+    .brow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bl2)}
+    .brow:last-child{border-bottom:none}
 
-    /* ── 체크인 ── */
-    .check-btn{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);background:none;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-    .check-btn.on{background:var(--green);border-color:var(--green);color:white}
+    /* 내 예약 탭 */
+    .btabs{display:flex;border-bottom:2px solid var(--bl2);margin-bottom:12px}
+    .btab{flex:1;padding:9px 0;font-size:13px;font-weight:700;border:none;background:none;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+    .btab.on{color:var(--gd);border-bottom-color:var(--gd)}
 
-    /* ── 예약 리스트 ── */
-    .booking-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border-light)}
-    .booking-row:last-child{border-bottom:none}
+    /* FAB */
+    .fab{position:fixed;bottom:76px;right:16px;width:50px;height:50px;border-radius:50%;background:var(--gd);color:white;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 18px rgba(46,82,67,.35);display:flex;align-items:center;justify-content:center;z-index:99}
 
-    /* ── 수업 관리 액션 ── */
-    .class-actions{display:flex;gap:7px;margin-top:11px}
+    /* 토스트 */
+    .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#1E2820;color:white;padding:9px 18px;border-radius:20px;font-size:12px;font-weight:600;z-index:300;animation:ti .25s,to .25s 2.3s forwards;white-space:nowrap}
+    @keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(9px)}}@keyframes to{to{opacity:0;transform:translateX(-50%) translateY(9px)}}
 
-    /* ── FAB ── */
-    .fab{position:fixed;bottom:78px;right:18px;width:50px;height:50px;border-radius:50%;background:var(--green-dark);color:white;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 18px rgba(46,82,67,.35);display:flex;align-items:center;justify-content:center;z-index:99}
+    /* 용량 바 */
+    .cap-bar{height:3px;background:var(--bl2);border-radius:2px;margin-top:5px;overflow:hidden}
+    .cap-fill{height:100%;border-radius:2px;transition:width .3s}
 
-    /* ── 토스트 ── */
-    .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1E2820;color:white;padding:10px 20px;border-radius:20px;font-size:12px;font-weight:600;z-index:300;animation:toastIn .25s,toastOut .25s 2.3s forwards;white-space:nowrap;letter-spacing:.1px}
-    @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}}
-    @keyframes toastOut{to{opacity:0;transform:translateX(-50%) translateY(10px)}}
-
-    /* ── 구분선 ── */
-    .divider{height:1px;background:var(--border-light);margin:16px 0}
+    /* 휴무일 토글 */
+    .holi-btn{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;cursor:pointer;border:none;transition:all .2s}
 
     @media(min-width:480px){body{box-shadow:0 0 50px rgba(0,0,0,.08)}}
   </style>
@@ -167,19 +185,17 @@
 <div id="app"></div>
 <script>
 // ━━━ 설정 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-const ADMIN_PW_DEFAULT = 'bione1234';
+const ADMIN_PW = 'bone1234';
 
-// ━━━ 카테고리 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-const CATS = {
-  healing: {label:'힐링·리스토어', css:''},
-  vinyasa: {label:'빈야사·인요가',  css:''},
-  aroma:   {label:'아로마',         css:'aroma'},
-  stretch: {label:'스트레칭',       css:'stretch'},
-  special: {label:'특별 클래스',    css:'special'},
+const CATS={
+  healing:{label:'힐링·리스토어',css:''},
+  vinyasa:{label:'빈야사·인요가',css:''},
+  aroma:  {label:'아로마',css:'aroma'},
+  stretch:{label:'스트레칭',css:'stretch'},
+  special:{label:'특별 클래스',css:'special'},
 };
 
-// ━━━ 주간 정기 시간표 (June Summer Wellness Flow) ━━━
-const WEEKLY = [
+const WEEKLY=[
   {dow:1,time:'07:00',name:'빈야사 싱잉볼',cat:'vinyasa'},
   {dow:1,time:'10:30',name:'리스토어 하타',cat:'healing'},
   {dow:1,time:'12:00',name:'힐링요가 싱잉볼',cat:'healing'},
@@ -199,28 +215,29 @@ const WEEKLY = [
   {dow:6,time:'14:00',name:'하타요가 & 싱잉볼',cat:'healing'},
 ];
 
-// ━━━ 로컬 스토리지 ━━━━━━━━━━━━━━━━━━━━━━━
+// ━━━ 스토리지 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const S={
-  get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},
-  set:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
+  g:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},
+  s:(k,v)=>localStorage.setItem(k,JSON.stringify(v)),
 };
-
-function getCfg(){ return S.get('b1_cfg',{pw:ADMIN_PW_DEFAULT,instructor:'정윤희',defaultPrice:35000,defaultCap:10}); }
-function getClasses(){ const c=S.get('b1_cls',null);if(!c){const g=genSched();S.set('b1_cls',g);return g;}return c; }
-function saveClasses(c){ S.set('b1_cls',c); }
-function getBookings(){ return S.get('b1_bkg',[]); }
-function saveBookings(b){ S.set('b1_bkg',b); }
+function getCfg(){return S.g('b1_cfg',{pw:ADMIN_PW,instructor:'정윤희',defaultPrice:35000,defaultCap:10});}
+function getClasses(){const c=S.g('b1_cls',null);if(!c){const g=genSched();S.s('b1_cls',g);return g;}return c;}
+function saveClasses(c){S.s('b1_cls',c);}
+function getBookings(){return S.g('b1_bkg',[]);}
+function saveBookings(b){S.s('b1_bkg',b);}
+function getClosed(){return S.g('b1_closed',[]);}
+function saveClosed(d){S.s('b1_closed',d);}
 
 function genSched(){
-  const cfg=getCfg(),cls=[],today=new Date();
-  for(let w=0;w<4;w++) for(let d=0;d<7;d++){
-    const dt=new Date(today); dt.setDate(today.getDate()+w*7+d);
-    const dow=dt.getDay();
-    WEEKLY.filter(t=>t.dow===dow).forEach(t=>{
-      cls.push({id:uid(),name:t.name,date:dt.toISOString().split('T')[0],time:t.time,
-        duration:50,capacity:cfg.defaultCap,instructor:cfg.instructor,
-        description:'',price:cfg.defaultPrice,category:t.cat,
-        isSpecial:false,specialBadge:'이달의 특별 클래스',createdAt:Date.now()});
+  const cfg=getCfg(),cls=[],t=new Date();
+  for(let w=0;w<4;w++)for(let d=0;d<7;d++){
+    const dt=new Date(t);dt.setDate(t.getDate()+w*7+d);
+    const dow=dt.getDay(),dateStr=dt.toISOString().split('T')[0];
+    WEEKLY.filter(x=>x.dow===dow).forEach(x=>{
+      cls.push({id:uid(),name:x.name,date:dateStr,time:x.time,duration:50,
+        capacity:cfg.defaultCap,instructor:cfg.instructor,description:'',
+        price:cfg.defaultPrice,category:x.cat,isSpecial:false,
+        specialBadge:'이달의 특별 클래스',createdAt:Date.now()});
     });
   }
   return cls;
@@ -235,11 +252,13 @@ function fmtMoney(n){return n.toLocaleString()+'원';}
 function todayStr(){return new Date().toISOString().split('T')[0];}
 function isFuture(d){return d>=todayStr();}
 function isToday(d){return d===todayStr();}
-function bookCount(id){return getBookings().filter(b=>b.classId===id&&b.status==='confirmed').length;}
-function myBkg(cid,phone){return getBookings().find(b=>b.classId===cid&&b.customerPhone===phone&&b.status==='confirmed');}
+function isClosed(d){return getClosed().includes(d);}
+function bookCount(id,status='confirmed'){return getBookings().filter(b=>b.classId===id&&b.status===status).length;}
+function pendingCount(id){return bookCount(id,'pending');}
+function myBkg(cid,phone){return getBookings().find(b=>b.classId===cid&&b.customerPhone===phone&&(b.status==='pending'||b.status==='confirmed'));}
 function cancelOk(cls){return new Date()<new Date(cls.date+'T23:59:59');}
-function dateRange(){const a=[],t=new Date();for(let i=0;i<14;i++){const d=new Date(t);d.setDate(t.getDate()+i);a.push(d.toISOString().split('T')[0]);}return a;}
 function cfmt(p){return p.replace(/[^0-9]/g,'').replace(/(\d{3})(\d{3,4})(\d{4})/,'$1-$2-$3');}
+function dateRange(){const a=[],t=new Date();for(let i=0;i<14;i++){const d=new Date(t);d.setDate(t.getDate()+i);a.push(d.toISOString().split('T')[0]);}return a;}
 
 function toast(msg){
   document.querySelectorAll('.toast').forEach(e=>e.remove());
@@ -249,297 +268,452 @@ function toast(msg){
 
 // ━━━ 상태 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const A={
-  user:S.get('b1_user',null),
+  user:S.g('b1_user',null),
   screen:'login',
-  cTab:'schedule',
-  aTab:'dash',
-  selDate:todayStr(),
-  modal:null,
+  cTab:'schedule',    // customer: schedule | my
+  aTab:'dash',        // admin: dash | cal | special
+  bkgTab:'upcoming',  // customer my-bookings: upcoming | past
+  selDate:todayStr(), // customer schedule selected date
+  calMonth:todayStr().slice(0,7), // YYYY-MM admin calendar month
+  calDate:todayStr(), // admin calendar selected date
+  expandCls:null,     // admin: expanded class for booking list
+  modal:null,         // book | cls-form | special-form
   mData:null,
   editCls:null,
-  payMethod:'spot',  // spot(현장결제) | postpay(후불결제)
+  payMethod:'spot',
   loginTab:'customer',
-  _fsp:false,  // 특별 클래스 체크박스 임시 상태
+  _fsp:false,
 };
 
-// ━━━ 메인 렌더 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ━━━ 렌더 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function render(){
   const app=document.getElementById('app');
-  if(!A.user){app.innerHTML=renderLogin();}
-  else if(A.user.role==='customer'){app.innerHTML=renderCustomer();}
-  else{app.innerHTML=renderAdmin();}
-  if(A.modal) app.insertAdjacentHTML('beforeend',renderModal());
+  if(!A.user)app.innerHTML=renderLogin();
+  else if(A.user.role==='customer')app.innerHTML=renderCustomer();
+  else app.innerHTML=renderAdmin();
+  if(A.modal)app.insertAdjacentHTML('beforeend',renderModal());
   bindKeys();
 }
 
 // ━━━ 로그인 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function renderLogin(){
-  return `<div class="login-wrap">
-    <div class="login-logo">
-      <span class="login-visual">🌿</span>
-      <div class="login-title">B<span class="header-dot">.</span>ONE WELLNESS</div>
-      <div class="login-sub">Yoga &amp; Wellness Studio</div>
+  return `<div class="lw">
+    <div class="ll">
+      <span class="lv">🌿</span>
+      <div class="lt">B<span style="color:var(--blush)">.</span>ONE WELLNESS</div>
+      <div class="ls">Yoga &amp; Wellness Studio</div>
     </div>
     <div style="width:100%">
-      <div class="login-tabs">
-        <button class="login-tab ${A.loginTab==='customer'?'active':''}" onclick="A.loginTab='customer';render()">회원 예약</button>
-        <button class="login-tab ${A.loginTab==='admin'?'active':''}" onclick="A.loginTab='admin';render()">관리자</button>
+      <div class="ltab">
+        <button class="ltb ${A.loginTab==='customer'?'on':''}" onclick="A.loginTab='customer';render()">회원 예약</button>
+        <button class="ltb ${A.loginTab==='admin'?'on':''}" onclick="A.loginTab='admin';render()">관리자</button>
       </div>
-      <div class="login-box">
+      <div class="lbox">
         ${A.loginTab==='customer'?`
-          <div class="form-group">
-            <label class="form-label">이름</label>
-            <input class="form-input" id="ln" type="text" placeholder="홍길동" autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label class="form-label">휴대폰 번호</label>
-            <input class="form-input" id="lp" type="tel" placeholder="010-1234-5678" autocomplete="tel">
-          </div>
-          <button class="btn btn-primary btn-full" onclick="loginCustomer()">입장하기</button>
-          <p class="login-hint">별도 회원가입 없이<br>이름과 번호만으로 예약할 수 있어요</p>
-        `:`
-          <div class="form-group">
-            <label class="form-label">관리자 비밀번호</label>
-            <input class="form-input" id="apw" type="password" placeholder="비밀번호">
-          </div>
-          <button class="btn btn-primary btn-full" onclick="loginAdmin()">관리자 입장</button>
-        `}
+          <div class="fg"><label class="fl">이름</label><input class="fi" id="ln" type="text" placeholder="홍길동" autocomplete="name"></div>
+          <div class="fg"><label class="fl">휴대폰 번호</label><input class="fi" id="lp" type="tel" placeholder="010-1234-5678" autocomplete="tel"></div>
+          <button class="btn bp bfull" onclick="loginCustomer()">입장하기</button>
+          <p class="lhint">회원가입 없이 이름과 번호로 예약할 수 있어요</p>`
+        :`<div class="fg"><label class="fl">관리자 비밀번호</label><input class="fi" id="apw" type="password" placeholder="비밀번호"></div>
+          <button class="btn bp bfull" onclick="loginAdmin()">관리자 입장</button>`}
       </div>
     </div>
   </div>`;
 }
-
 function loginCustomer(){
   const n=document.getElementById('ln')?.value.trim();
   const p=cfmt(document.getElementById('lp')?.value||'');
-  if(!n){toast('이름을 입력해주세요');return;}
-  if(p.length<9){toast('휴대폰 번호를 입력해주세요');return;}
-  A.user={name:n,phone:p,role:'customer'};
-  S.set('b1_user',A.user); A.screen='main'; render();
+  if(!n)return toast('이름을 입력해주세요');
+  if(p.length<9)return toast('휴대폰 번호를 입력해주세요');
+  A.user={name:n,phone:p,role:'customer'};S.s('b1_user',A.user);render();
 }
 function loginAdmin(){
-  const pw=document.getElementById('apw')?.value;
-  if(pw===getCfg().pw){A.user={name:'관리자',role:'admin'};S.set('b1_user',A.user);A.screen='main';render();}
-  else toast('비밀번호가 틀렸습니다');
+  if(document.getElementById('apw')?.value===getCfg().pw){
+    A.user={name:'관리자',role:'admin'};S.s('b1_user',A.user);render();
+  }else toast('비밀번호가 틀렸습니다');
 }
-function logout(){A.user=null;S.set('b1_user',null);A.screen='login';A.modal=null;render();}
+function logout(){A.user=null;S.s('b1_user',null);A.modal=null;render();}
 
 // ━━━ 고객 화면 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function renderCustomer(){
   return `<div>
-    <div class="header">
-      <div>
-        <div class="header-wordmark">B<span class="header-dot">.</span>ONE WELLNESS</div>
-        <div class="header-sub">안녕하세요, ${A.user.name}님 👋</div>
-      </div>
-      <button class="btn-text" onclick="logout()">로그아웃</button>
+    <div class="hdr">
+      <div><div class="wm">B<span style="color:var(--blush)">.</span>ONE WELLNESS</div>
+      <div class="hs">안녕하세요, ${A.user.name}님 👋</div></div>
+      <button class="bt" onclick="logout()">로그아웃</button>
     </div>
-    <div class="content">
-      ${A.cTab==='schedule'?renderSchedule():renderMyBkgs()}
-    </div>
-    <nav class="bottom-nav">
-      <button class="nav-item ${A.cTab==='schedule'?'active':''}" onclick="A.cTab='schedule';render()">
-        <span class="nav-icon">📅</span><span>수업</span>
-      </button>
-      <button class="nav-item ${A.cTab==='my'?'active':''}" onclick="A.cTab='my';render()">
-        <span class="nav-icon">🎫</span><span>내 예약</span>
-      </button>
+    <div class="content">${A.cTab==='schedule'?renderSchedule():renderMyBkgs()}</div>
+    <nav class="bnav">
+      <button class="ni ${A.cTab==='schedule'?'on':''}" onclick="A.cTab='schedule';render()">
+        <span class="ni-ic">📅</span><span>수업</span></button>
+      <button class="ni ${A.cTab==='my'?'on':''}" onclick="A.cTab='my';render()">
+        <span class="ni-ic">🎫</span><span>내 예약</span></button>
     </nav>
   </div>`;
 }
 
 function renderSchedule(){
   const specials=getClasses().filter(c=>c.isSpecial&&isFuture(c.date)).sort((a,b)=>a.date.localeCompare(b.date));
-  const dates=dateRange();
-  const all=getClasses().filter(c=>isFuture(c.date)).sort((a,b)=>a.date!==b.date?a.date.localeCompare(b.date):a.time.localeCompare(b.time));
+  const all=getClasses().filter(c=>isFuture(c.date)&&!isClosed(c.date)).sort((a,b)=>a.date!==b.date?a.date.localeCompare(b.date):a.time.localeCompare(b.time));
+  const dates=dateRange().filter(d=>!isClosed(d));
 
-  const banners=specials.slice(0,3).map(c=>{
-    const rem=c.capacity-bookCount(c.id),mine=myBkg(c.id,A.user.phone);
-    return `<div class="special-banner">
-      <div class="special-badge">✨ ${c.specialBadge||'특별 클래스'}</div>
-      <div class="special-name">${c.name}</div>
-      <div class="special-meta">📅 ${fmtDate(c.date)}&nbsp;&nbsp;${fmtTime(c.time)}&nbsp;·&nbsp;${c.duration}분</div>
-      <div class="special-meta">강사: ${c.instructor}&nbsp;&nbsp;·&nbsp;&nbsp;잔여 ${rem}자리</div>
-      <div class="special-price">${fmtMoney(c.price)}</div>
-      <div style="margin-top:12px">
-        ${mine?`<span class="badge" style="background:rgba(255,255,255,.25);color:white;font-size:12px">✓ 예약완료</span>`
-          :rem<=0?`<span class="badge" style="background:rgba(0,0,0,.2);color:rgba(255,255,255,.8)">마감</span>`
-          :`<button class="btn" style="background:white;color:var(--green-dark);font-size:13px;font-weight:700;padding:8px 18px" onclick="openBook('${c.id}')">예약하기</button>`}
+  const banners=specials.slice(0,2).map(c=>{
+    const rem=c.capacity-bookCount(c.id),bkg=myBkg(c.id,A.user.phone);
+    return `<div class="sb">
+      <div class="sbadge">✨ ${c.specialBadge||'특별 클래스'}</div>
+      <div class="sn">${c.name}</div>
+      <div class="sm">📅 ${fmtDate(c.date)}&nbsp;·&nbsp;${fmtTime(c.time)}&nbsp;·&nbsp;${c.duration}분</div>
+      <div class="sm">강사: ${c.instructor}&nbsp;·&nbsp;잔여 ${rem}자리</div>
+      <div class="sp">${fmtMoney(c.price)}</div>
+      <div style="margin-top:10px">
+        ${bkg
+          ?bkg.status==='pending'
+            ?`<span class="badge bw2">⏳ 승인 대기 중</span>`
+            :`<span class="badge" style="background:rgba(255,255,255,.25);color:white">✓ 예약확정</span>`
+          :rem<=0?`<span class="badge" style="background:rgba(0,0,0,.2);color:rgba(255,255,255,.7)">마감</span>`
+          :`<button class="btn" style="background:white;color:var(--gd);font-size:13px;font-weight:700;padding:7px 16px" onclick="openBook('${c.id}')">예약하기</button>`}
       </div>
     </div>`;
   }).join('');
 
-  const chips=dates.map(d=>{
-    const hasC=all.some(c=>c.date===d);
-    return `<button class="date-chip ${A.selDate===d?'active':''}" onclick="A.selDate='${d}';render()" style="${!hasC&&A.selDate!==d?'opacity:.4':''}">
+  const chips=dateRange().map(d=>{
+    if(isClosed(d))return '';
+    return `<button class="dchip ${A.selDate===d?'on':''}" onclick="A.selDate='${d}';render()">
       ${isToday(d)?'오늘':`${new Date(d+'T00:00:00').getMonth()+1}/${new Date(d+'T00:00:00').getDate()} (${DAYS[new Date(d+'T00:00:00').getDay()]})`}
     </button>`;
   }).join('');
 
   const dayCls=all.filter(c=>c.date===A.selDate&&!c.isSpecial);
   const cards=dayCls.length===0
-    ?`<div class="empty"><div class="empty-icon">🧘</div><div class="empty-text">이 날은 수업이 없어요</div><div class="empty-sub">다른 날짜를 선택해보세요</div></div>`
-    :dayCls.map(c=>renderClassCard(c)).join('');
+    ?`<div class="empty"><div class="ei">🧘</div><div class="et">이 날은 수업이 없어요</div><div class="es">다른 날짜를 선택해보세요</div></div>`
+    :dayCls.map(c=>renderCCard(c)).join('');
 
-  return `${specials.length>0?banners:''}
-    <div class="date-chips">${chips}</div>
-    <div class="section-title">${fmtDate(A.selDate)}</div>
-    ${cards}`;
+  return `${specials.length>0?banners:''}<div class="dchips">${chips}</div>
+    <div class="st">${fmtDate(A.selDate)}</div>${cards}`;
 }
 
-function renderClassCard(cls){
+function renderCCard(cls){
   const cnt=bookCount(cls.id),rem=cls.capacity-cnt;
   const isFull=rem<=0,isFew=rem>0&&rem<=3;
-  const mine=myBkg(cls.id,A.user.phone);
+  const bkg=myBkg(cls.id,A.user.phone);
+  let pill='',pillCls='';
+  if(isFull){pill='마감';pillCls='full';}else if(isFew){pill=`잔여 ${rem}자리`;pillCls='few';}else{pill=`${cnt}/${cls.capacity}명`;}
 
-  let pillCls='',pillTxt='';
-  if(isFull){pillCls='full';pillTxt='마감';}
-  else if(isFew){pillCls='few';pillTxt=`잔여 ${rem}자리`;}
-  else{pillTxt=`${cnt}/${cls.capacity}명`;}
+  let action='';
+  if(bkg){
+    action=bkg.status==='pending'
+      ?`<span class="badge bw2" style="font-size:11px">⏳ 승인대기</span>`
+      :`<span class="badge bg" style="font-size:11px">✓ 확정</span>`;
+  }else if(isFull){
+    action=`<button class="btn bsm" style="background:var(--bg);color:var(--ts);cursor:not-allowed;border:none" disabled>마감</button>`;
+  }else{
+    action=`<button class="btn bp bsm" onclick="openBook('${cls.id}')">예약</button>`;
+  }
 
-  const action=mine?`<span class="badge badge-green" style="font-size:11px">✓ 예약됨</span>`
-    :isFull?`<button class="btn btn-sm" style="background:var(--bg);color:var(--text-sub);cursor:not-allowed;border:none" disabled>마감</button>`
-    :`<button class="btn btn-primary btn-sm" onclick="openBook('${cls.id}')">예약</button>`;
-
-  return `<div class="class-card ${CATS[cls.category]?.css||''}">
-    <div class="class-row">
-      <div class="class-name">${cls.name}</div>
-      ${action}
-    </div>
-    <div class="class-meta">${fmtTime(cls.time)}&nbsp;·&nbsp;${cls.duration}분&nbsp;·&nbsp;${cls.instructor}</div>
-    ${cls.description?`<div class="class-meta" style="margin-top:2px;color:var(--text-sub)">${cls.description}</div>`:''}
+  return `<div class="cc ${CATS[cls.category]?.css||''}">
+    <div class="crow"><div class="cn">${cls.name}</div>${action}</div>
+    <div class="cm">${fmtTime(cls.time)}&nbsp;·&nbsp;${cls.duration}분&nbsp;·&nbsp;${cls.instructor}</div>
+    ${cls.description?`<div class="cm" style="color:var(--ts)">${cls.description}</div>`:''}
     <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
-      <span class="capacity-pill ${pillCls}">👥 ${pillTxt}</span>
-      <span style="font-size:12px;color:var(--green-dark);font-weight:700">${fmtMoney(cls.price)}</span>
+      <span style="font-size:11px;color:${isFull?'var(--danger)':isFew?'var(--warn)':'var(--ts)'};background:var(--bg);padding:2px 8px;border-radius:20px;border:1px solid var(--bl2)">👥 ${pill}</span>
+      <span style="font-size:12px;color:var(--gd);font-weight:700">${fmtMoney(cls.price)}</span>
     </div>
   </div>`;
 }
 
 function renderMyBkgs(){
-  const bkgs=getBookings().filter(b=>b.customerPhone===A.user.phone);
-  const upcoming=bkgs.filter(b=>{const c=getClasses().find(x=>x.id===b.classId);return c&&isFuture(c.date)&&b.status==='confirmed';});
-  const past=bkgs.filter(b=>{const c=getClasses().find(x=>x.id===b.classId);return c&&!isFuture(c.date);});
+  const all=getBookings().filter(b=>b.customerPhone===A.user.phone);
+  const upcoming=all.filter(b=>{const c=getClasses().find(x=>x.id===b.classId);return c&&isFuture(c.date);})
+    .sort((a,b)=>(getClasses().find(x=>x.id===a.classId)?.date||'').localeCompare(getClasses().find(x=>x.id===b.classId)?.date||''));
+  const past=all.filter(b=>{const c=getClasses().find(x=>x.id===b.classId);return c&&!isFuture(c.date);})
+    .sort((a,b)=>(getClasses().find(x=>x.id===b.classId)?.date||'').localeCompare(getClasses().find(x=>x.id===a.classId)?.date||''));
 
   const card=(b,isPast)=>{
     const c=getClasses().find(x=>x.id===b.classId);if(!c)return '';
-    const isSpot=b.paymentMethod==='spot';
-    const pBadge=b.status==='confirmed'
-      ?isSpot?`<span class="badge badge-blush">🏠 현장결제</span>`:`<span class="badge badge-gold">📋 후불결제</span>`
-      :`<span class="badge badge-red">취소됨</span>`;
-    return `<div class="class-card ${CATS[c.category]?.css||''}">
-      <div class="class-row">
-        <div class="class-name">${c.name}</div>
-        ${pBadge}
-      </div>
-      <div class="class-meta">${fmtDate(c.date)}&nbsp;·&nbsp;${fmtTime(c.time)}</div>
-      <div class="class-meta">${fmtMoney(c.price)}&nbsp;·&nbsp;${c.instructor}</div>
-      ${!isPast&&b.status==='confirmed'&&cancelOk(c)?`
-        <div style="margin-top:10px">
-          <button class="btn btn-danger btn-sm" onclick="cancelBkg('${b.id}')">예약 취소</button>
+    const badge=
+      b.status==='pending'?`<span class="badge bw2">⏳ 승인대기</span>`
+      :b.status==='confirmed'?b.paymentMethod==='spot'?`<span class="badge bb">🏠 현장</span>`:`<span class="badge bo2">📋 후불</span>`
+      :b.status==='rejected'?`<span class="badge br">거절됨</span>`
+      :`<span class="badge br">취소됨</span>`;
+    return `<div class="cc ${CATS[c.category]?.css||''}" style="${b.status==='cancelled'||b.status==='rejected'?'opacity:.5':''}">
+      <div class="crow"><div class="cn">${c.name}</div>${badge}</div>
+      <div class="cm">${fmtDate(c.date)}&nbsp;·&nbsp;${fmtTime(c.time)}</div>
+      <div class="cm">${fmtMoney(c.price)}&nbsp;·&nbsp;${c.instructor}</div>
+      ${!isPast&&(b.status==='pending'||b.status==='confirmed')&&cancelOk(c)?`
+        <div style="margin-top:9px">
+          <button class="btn bd bsm" onclick="cancelBkg('${b.id}')">예약 취소</button>
         </div>`:''}
     </div>`;
   };
 
-  return `<div class="section-title">예정된 예약 (${upcoming.length})</div>
-    ${upcoming.length===0?`<div class="empty"><div class="empty-icon">🎫</div><div class="empty-text">예약된 수업이 없어요</div><div class="empty-sub">수업 탭에서 예약해보세요</div></div>`:upcoming.map(b=>card(b,false)).join('')}
-    ${past.length>0?`<div class="section-title" style="margin-top:22px;color:var(--text-sub)">지난 수업 (${past.length})</div>${past.map(b=>card(b,true)).join('')}`:''}`;
+  const upcomingCnt=upcoming.filter(b=>b.status==='pending'||b.status==='confirmed').length;
+  return `<div class="btabs">
+    <button class="btab ${A.bkgTab==='upcoming'?'on':''}" onclick="A.bkgTab='upcoming';render()">예정된 예약 ${upcomingCnt}</button>
+    <button class="btab ${A.bkgTab==='past'?'on':''}" onclick="A.bkgTab='past';render()">지난 예약 ${past.length}</button>
+  </div>
+  ${A.bkgTab==='upcoming'
+    ?upcoming.length===0?`<div class="empty"><div class="ei">🎫</div><div class="et">예정된 예약이 없어요</div><div class="es">수업 탭에서 예약해보세요</div></div>`:upcoming.map(b=>card(b,false)).join('')
+    :past.length===0?`<div class="empty"><div class="ei">📖</div><div class="et">지난 수업 내역이 없어요</div><div class="es">수업을 들으면 여기에 기록돼요</div></div>`:past.map(b=>card(b,true)).join('')
+  }`;
 }
 
 // ━━━ 관리자 화면 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 function renderAdmin(){
+  const totalPending=getBookings().filter(b=>b.status==='pending').length;
   return `<div>
-    <div class="header">
-      <div><div class="header-wordmark">B<span class="header-dot">.</span>ONE&nbsp;<span style="font-size:14px;font-family:inherit;font-weight:700;letter-spacing:0">관리</span></div></div>
-      <button class="btn-text" onclick="logout()">로그아웃</button>
+    <div class="hdr">
+      <div><div class="wm">B<span style="color:var(--blush)">.</span>ONE 관리</div></div>
+      <button class="bt" onclick="logout()">로그아웃</button>
     </div>
     <div class="content">
-      ${A.aTab==='dash'?renderDash():renderManage()}
+      ${A.aTab==='dash'?renderDash():A.aTab==='cal'?renderCal():renderSpecialMgmt()}
     </div>
-    ${A.aTab==='manage'?`<button class="fab" onclick="openAddCls()" title="수업 추가">＋</button>`:''}
-    <nav class="bottom-nav">
-      <button class="nav-item ${A.aTab==='dash'?'active':''}" onclick="A.aTab='dash';render()">
-        <span class="nav-icon">📊</span><span>대시보드</span>
-      </button>
-      <button class="nav-item ${A.aTab==='manage'?'active':''}" onclick="A.aTab='manage';render()">
-        <span class="nav-icon">📋</span><span>수업관리</span>
-      </button>
+    ${A.aTab==='cal'?`<button class="fab" onclick="openAddCls()">＋</button>`:''}
+    <nav class="bnav">
+      <button class="ni ${A.aTab==='dash'?'on':''}" onclick="A.aTab='dash';render()">
+        <span class="ni-ic">📊</span><span>대시보드</span></button>
+      <button class="ni ${A.aTab==='cal'?'on':''}" onclick="A.aTab='cal';render()" style="position:relative">
+        <span class="ni-ic">📅</span><span>수업 달력</span>
+        ${totalPending>0?`<span style="position:absolute;top:6px;right:8px;background:var(--danger);color:white;font-size:9px;font-weight:700;border-radius:8px;padding:1px 5px">${totalPending}</span>`:''}</button>
+      <button class="ni ${A.aTab==='special'?'on':''}" onclick="A.aTab='special';render()">
+        <span class="ni-ic">✨</span><span>특별클래스</span></button>
     </nav>
   </div>`;
 }
 
 function renderDash(){
   const t=todayStr(),cls=getClasses(),bkgs=getBookings();
-  const todayCls=cls.filter(c=>c.date===t).sort((a,b)=>a.time.localeCompare(b.time));
-  const todayBkg=bkgs.filter(b=>{const c=cls.find(x=>x.id===b.classId);return c&&c.date===t&&b.status==='confirmed';});
-  const members=[...new Set(bkgs.filter(b=>b.status==='confirmed').map(b=>b.customerPhone))];
-  const postpay=bkgs.filter(b=>b.status==='confirmed'&&b.paymentMethod==='postpay');
+  const tCls=cls.filter(c=>c.date===t).sort((a,b)=>a.time.localeCompare(b.time));
+  const tConf=bkgs.filter(b=>{const c=cls.find(x=>x.id===b.classId);return c&&c.date===t&&b.status==='confirmed';});
+  const members=[...new Set(bkgs.filter(b=>b.status==='confirmed'||b.status==='pending').map(b=>b.customerPhone))];
+  const pending=bkgs.filter(b=>b.status==='pending');
 
-  const todayCards=todayCls.length===0
-    ?`<div class="empty" style="padding:22px 20px"><div class="empty-icon">📅</div><div class="empty-text">오늘 수업이 없어요</div></div>`
-    :todayCls.map(c=>{
-      const cnt=bookCount(c.id);
-      return `<div class="card" style="cursor:pointer" onclick="viewBkg('${c.id}')">
+  const tCards=tCls.length===0
+    ?`<div class="empty" style="padding:20px"><div class="ei">📅</div><div class="et">오늘 수업이 없어요</div></div>`
+    :tCls.map(c=>{
+      const cnt=bookCount(c.id),pnd=pendingCount(c.id);
+      return `<div class="card" style="cursor:pointer" onclick="A.aTab='cal';A.calDate='${c.date}';A.expandCls='${c.id}';render()">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div>
-            <div style="font-size:15px;font-weight:700;letter-spacing:-.2px">${c.name}</div>
-            <div style="font-size:12px;color:var(--text-mid);margin-top:2px">${fmtTime(c.time)}&nbsp;·&nbsp;${c.duration}분</div>
+            <div style="font-size:14px;font-weight:700">${c.name}</div>
+            <div style="font-size:12px;color:var(--tm)">${fmtTime(c.time)}&nbsp;·&nbsp;${c.duration}분</div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:22px;font-weight:900;color:var(--green-dark)">${cnt}</div>
-            <div style="font-size:10px;color:var(--text-sub)">/ ${c.capacity}명</div>
+            <div style="font-size:20px;font-weight:900;color:var(--gd)">${cnt}<span style="font-size:11px;color:var(--ts);font-weight:500">/${c.capacity}</span></div>
+            ${pnd>0?`<div style="font-size:10px;color:var(--danger);font-weight:700">승인대기 ${pnd}</div>`:''}
           </div>
         </div>
-        <div style="font-size:11px;color:var(--green-mid);margin-top:8px;font-weight:600">예약 현황 보기 →</div>
+        <div class="cap-bar"><div class="cap-fill" style="width:${Math.round(cnt/c.capacity*100)}%;background:${cnt===c.capacity?'var(--danger)':cnt>=c.capacity*.8?'var(--warn)':'var(--gm)'}"></div></div>
       </div>`;
     }).join('');
 
-  return `<div class="stats-grid">
-    <div class="stat-card"><div class="stat-num">${todayCls.length}</div><div class="stat-label">오늘 수업</div></div>
-    <div class="stat-card"><div class="stat-num">${todayBkg.length}</div><div class="stat-label">오늘 예약</div></div>
-    <div class="stat-card"><div class="stat-num">${members.length}</div><div class="stat-label">총 회원</div></div>
+  return `<div class="sgrid">
+    <div class="scard"><div class="snum">${tCls.length}</div><div class="slb">오늘 수업</div></div>
+    <div class="scard"><div class="snum">${tConf.length}</div><div class="slb">오늘 확정</div></div>
+    <div class="scard"><div class="snum">${members.length}</div><div class="slb">총 회원</div></div>
   </div>
-  ${postpay.length>0?`<div class="card" style="background:var(--gold-light);border-color:var(--gold);margin-bottom:14px">
-    <div style="font-size:13px;font-weight:700;color:var(--gold)">📋 후불결제 대기 ${postpay.length}건</div>
-    <div style="font-size:11px;color:var(--text-mid);margin-top:3px">수업 종료 후 결제가 필요한 예약이 있어요</div>
+  ${pending.length>0?`<div class="card" style="background:#FFF3EC;border-color:var(--warn);cursor:pointer;margin-bottom:14px" onclick="A.aTab='cal';render()">
+    <div style="font-size:13px;font-weight:700;color:var(--warn)">⏳ 예약 승인 대기 ${pending.length}건</div>
+    <div style="font-size:11px;color:var(--tm);margin-top:3px">달력에서 확인하고 승인해주세요</div>
   </div>`:''}
-  <div class="section-title">오늘의 수업</div>${todayCards}`;
+  <div class="st">오늘의 수업</div>${tCards}`;
 }
 
-function renderManage(){
-  const cls=getClasses().filter(c=>isFuture(c.date)).sort((a,b)=>a.date!==b.date?a.date.localeCompare(b.date):a.time.localeCompare(b.time));
-  if(!cls.length) return `<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">등록된 수업이 없어요</div><div class="empty-sub">+ 버튼으로 수업을 추가하세요</div></div>`;
+// ━━━ 관리자 달력 ━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderCal(){
+  const[yr,mo]=A.calMonth.split('-').map(Number);
+  const prevM=mo===1?`${yr-1}-12`:`${yr}-${String(mo-1).padStart(2,'0')}`;
+  const nextM=mo===12?`${yr+1}-01`:`${yr}-${String(mo+1).padStart(2,'0')}`;
+  const moLabel=`${yr}년 ${mo}월`;
 
-  return cls.map(c=>{
-    const cnt=bookCount(c.id);
-    return `<div class="class-card ${CATS[c.category]?.css||''}">
-      <div class="class-row">
-        <div>
-          <div class="class-name">${c.isSpecial?'✨ ':''} ${c.name}</div>
-          <div class="class-meta">${fmtDate(c.date)}&nbsp;·&nbsp;${fmtTime(c.time)}</div>
-          <div class="class-meta">${c.duration}분&nbsp;·&nbsp;${fmtMoney(c.price)}&nbsp;·&nbsp;정원 ${c.capacity}명</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:20px;font-weight:900;color:var(--green-dark)">${cnt}</div>
-          <div style="font-size:10px;color:var(--text-sub)">/ ${c.capacity}</div>
-        </div>
-      </div>
-      <div class="class-actions">
-        <button class="btn btn-outline btn-sm" onclick="viewBkg('${c.id}')">예약현황</button>
-        <button class="btn btn-outline btn-sm" onclick="editCls('${c.id}')">수정</button>
-        <button class="btn btn-danger btn-sm" onclick="delCls('${c.id}')">삭제</button>
-      </div>
+  // 달력 날짜 계산
+  const firstDay=new Date(yr,mo-1,1).getDay(); // 0=일
+  const daysInMonth=new Date(yr,mo,0).getDate();
+  const daysInPrev=new Date(yr,mo-1,0).getDate();
+
+  const bkgs=getBookings();
+  const cls=getClasses();
+
+  let cells='';
+  let cellIdx=0;
+  // 이전 달 채우기
+  for(let i=firstDay-1;i>=0;i--){
+    const d=daysInPrev-i;
+    cells+=`<div class="cal-cell other"><div class="cal-dn">${d}</div></div>`;
+    cellIdx++;
+  }
+  // 이번 달
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${yr}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow=new Date(yr,mo-1,d).getDay();
+    const closed=isClosed(dateStr);
+    const dayCls=cls.filter(c=>c.date===dateStr);
+    const dayPending=bkgs.filter(b=>b.status==='pending'&&dayCls.some(c=>c.id===b.classId)).length;
+    const isSelected=A.calDate===dateStr;
+    const isT=isToday(dateStr);
+
+    let dotHtml='';
+    if(!closed){
+      const special=dayCls.filter(c=>c.isSpecial);
+      const regular=dayCls.filter(c=>!c.isSpecial);
+      const dots=[];
+      if(regular.length>0)for(let i=0;i<Math.min(regular.length,3);i++)dots.push(`<div class="cal-dot g"></div>`);
+      if(special.length>0)dots.push(`<div class="cal-dot p"></div>`);
+      if(dayPending>0)dots.push(`<div class="cal-dot r"></div>`);
+      dotHtml=dots.length>0?`<div class="cal-dots">${dots.join('')}</div>`:'';
+    }
+
+    cells+=`<div class="cal-cell ${isT?'today':''} ${isSelected?'on':''} ${closed?'closed':''} ${dow===0?'sun':dow===6?'sat':''}"
+      onclick="A.calDate='${dateStr}';A.expandCls=null;render()">
+      <div class="cal-dn">${d}</div>
+      ${closed?`<div class="cal-closed-tag">휴무</div>`:dotHtml}
+      ${dayPending>0&&!closed?`<div class="cal-pending">${dayPending}</div>`:''}
     </div>`;
-  }).join('');
+    cellIdx++;
+  }
+  // 다음 달 채우기
+  const remaining=(7-cellIdx%7)%7;
+  for(let d=1;d<=remaining;d++){
+    cells+=`<div class="cal-cell other"><div class="cal-dn">${d}</div></div>`;
+  }
+
+  // 선택된 날짜의 수업 목록
+  const selClosed=isClosed(A.calDate);
+  const selCls=cls.filter(c=>c.date===A.calDate).sort((a,b)=>a.time.localeCompare(b.time));
+
+  const dayPanel=`<div class="day-panel">
+    <div class="day-panel-hdr">
+      <div class="day-panel-title">${fmtDate(A.calDate)}</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        ${selClosed
+          ?`<button class="holi-btn" style="background:var(--gl);color:var(--gd)" onclick="toggleClosed('${A.calDate}')">휴무 해제</button>`
+          :`<button class="holi-btn" style="background:#fdf0f0;color:var(--danger)" onclick="toggleClosed('${A.calDate}')">휴무 지정</button>`}
+      </div>
+    </div>
+    ${selClosed?`<div style="padding:20px;text-align:center;color:var(--danger);font-weight:600;font-size:13px">🚫 휴무일로 지정된 날짜예요</div>`
+    :selCls.length===0?`<div class="empty" style="padding:24px"><div class="ei">📅</div><div class="et">등록된 수업이 없어요</div><div class="es">+ 버튼으로 수업을 추가하세요</div></div>`
+    :selCls.map(c=>{
+      const conf=bookCount(c.id),pend=pendingCount(c.id);
+      const isExp=A.expandCls===c.id;
+      const dayBkgs=bkgs.filter(b=>b.classId===c.id&&(b.status==='confirmed'||b.status==='pending'));
+      return `<div style="border-bottom:1px solid var(--bl2)">
+        <div style="padding:12px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center"
+          onclick="A.expandCls=A.expandCls==='${c.id}'?null:'${c.id}';render()">
+          <div>
+            <div style="font-size:14px;font-weight:700">${c.isSpecial?'✨ ':''}${c.name}</div>
+            <div style="font-size:12px;color:var(--tm)">${fmtTime(c.time)}&nbsp;·&nbsp;${c.duration}분</div>
+            <div style="font-size:11px;margin-top:2px">
+              <span style="color:var(--gd);font-weight:700">확정 ${conf}</span>
+              ${pend>0?`&nbsp;<span style="color:var(--danger);font-weight:700">대기 ${pend}</span>`:''}/&nbsp;${c.capacity}명
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+            <div style="display:flex;gap:5px">
+              <button class="btn bo bsm" onclick="event.stopPropagation();editCls('${c.id}')">수정</button>
+              <button class="btn bd bsm" onclick="event.stopPropagation();delCls('${c.id}')">삭제</button>
+            </div>
+            <span style="color:var(--ts);font-size:14px">${isExp?'▲':'▼'}</span>
+          </div>
+        </div>
+        ${isExp?`<div style="padding:0 14px 14px">
+          <div class="cap-bar" style="margin-bottom:10px"><div class="cap-fill" style="width:${Math.round(conf/c.capacity*100)}%;background:var(--gm)"></div></div>
+          ${!dayBkgs.length?`<div style="font-size:12px;color:var(--ts);text-align:center;padding:8px">예약자가 없어요</div>`
+          :dayBkgs.map(b=>`<div class="brow">
+            <div>
+              <div style="font-size:13px;font-weight:700">${b.customerName}
+                ${b.status==='pending'?`<span class="badge bw2" style="font-size:10px;margin-left:4px">대기</span>`:`<span class="badge bg" style="font-size:10px;margin-left:4px">확정</span>`}
+              </div>
+              <div style="font-size:11px;color:var(--tm)">${b.customerPhone}&nbsp;·&nbsp;${b.paymentMethod==='spot'?'🏠 현장':'📋 후불'}</div>
+            </div>
+            <div style="display:flex;gap:5px;align-items:center">
+              ${b.status==='pending'
+                ?`<button class="bapp" onclick="approveBook('${b.id}')">✓ 승인</button>
+                   <button class="brej" onclick="rejectBook('${b.id}')">✗ 거절</button>`
+                :`<button class="check-btn ${b.checkedIn?'on':''}" onclick="toggleCheck('${b.id}')" style="width:28px;height:28px;border-radius:50%;border:2px solid var(--border);background:${b.checkedIn?'var(--green)':'none'};cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;color:${b.checkedIn?'white':'inherit'}">${b.checkedIn?'✓':''}</button>`}
+            </div>
+          </div>`).join('')}
+        </div>`:''}
+      </div>`;
+    }).join('')}
+  </div>`;
+
+  // 이번 달 정기수업 일괄 생성
+  const hasCls=cls.filter(c=>c.date.startsWith(A.calMonth)&&!c.isSpecial).length>0;
+  const genBtn=!hasCls?`<button class="btn bp bfull" style="margin-bottom:12px" onclick="genMonthSched('${A.calMonth}')">📅 ${moLabel} 정기 수업 일괄 생성</button>`:'';
+
+  return `<div class="cal-wrap">
+    <div class="cal-hdr">
+      <button class="cal-nav" onclick="A.calMonth='${prevM}';render()">‹</button>
+      <div class="cal-title">${moLabel}</div>
+      <button class="cal-nav" onclick="A.calMonth='${nextM}';render()">›</button>
+    </div>
+    <div class="cal-days">
+      ${['일','월','화','수','목','금','토'].map((d,i)=>`<div class="cal-dh ${i===0?'sun':i===6?'sat':''}">${d}</div>`).join('')}
+      ${cells}
+    </div>
+  </div>
+  ${genBtn}${dayPanel}`;
+}
+
+function genMonthSched(yearMon){
+  const[yr,mo]=yearMon.split('-').map(Number);
+  const cfg=getCfg(),cls=getClasses(),added=[];
+  const dim=new Date(yr,mo,0).getDate();
+  for(let d=1;d<=dim;d++){
+    const dt=new Date(yr,mo-1,d);
+    const dateStr=`${yr}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    if(isClosed(dateStr))continue;
+    WEEKLY.filter(t=>t.dow===dt.getDay()).forEach(t=>{
+      if(!cls.some(c=>c.date===dateStr&&c.time===t.time&&c.name===t.name)){
+        const nc={id:uid(),name:t.name,date:dateStr,time:t.time,duration:50,
+          capacity:cfg.defaultCap,instructor:cfg.instructor,description:'',
+          price:cfg.defaultPrice,category:t.cat,isSpecial:false,
+          specialBadge:'이달의 특별 클래스',createdAt:Date.now()};
+        cls.push(nc);added.push(nc);
+      }
+    });
+  }
+  saveClasses(cls);toast(`${mo}월 정기 수업 ${added.length}개 생성됐어요`);render();
+}
+
+// ━━━ 특별클래스 관리 ━━━━━━━━━━━━━━━━━━━━━━
+function renderSpecialMgmt(){
+  const all=getClasses().filter(c=>isFuture(c.date)).sort((a,b)=>a.date.localeCompare(b.date));
+  const specials=all.filter(c=>c.isSpecial);
+  const normals=all.filter(c=>!c.isSpecial);
+
+  const sCards=specials.length===0
+    ?`<div class="empty" style="padding:24px"><div class="ei">✨</div><div class="et">등록된 특별 클래스가 없어요</div><div class="es">아래에서 일반 수업을 배너로 등록하세요</div></div>`
+    :specials.map(c=>`<div class="sb" style="margin-bottom:10px">
+      <div class="sbadge">✨ ${c.specialBadge}</div>
+      <div class="sn">${c.name}</div>
+      <div class="sm">${fmtDate(c.date)}&nbsp;·&nbsp;${fmtTime(c.time)}</div>
+      <div class="sp">${fmtMoney(c.price)}&nbsp;·&nbsp;예약 ${bookCount(c.id)}/${c.capacity}명</div>
+      <div style="display:flex;gap:7px;margin-top:10px">
+        <button class="btn bsm" style="background:rgba(255,255,255,.2);color:white;border:none" onclick="editCls('${c.id}')">수정</button>
+        <button class="btn bsm" style="background:rgba(255,255,255,.1);color:white;border:none" onclick="unmarkSpecial('${c.id}')">배너 해제</button>
+      </div>
+    </div>`).join('');
+
+  const promote=normals.length===0?'':`
+    <div class="st" style="margin-top:${specials.length>0?'18':'0'}px;color:var(--ts)">일반 수업 → 배너 등록</div>
+    ${normals.slice(0,8).map(c=>`<div class="card" style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px">
+      <div>
+        <div style="font-size:13px;font-weight:700">${c.name}</div>
+        <div style="font-size:11px;color:var(--ts)">${fmtDate(c.date)}&nbsp;·&nbsp;${fmtTime(c.time)}</div>
+      </div>
+      <button class="btn bsm" style="background:var(--gol);color:var(--gold);border:none;font-weight:700" onclick="markSpecial('${c.id}')">✨ 등록</button>
+    </div>`).join('')}`;
+
+  return `${sCards}${promote}`;
 }
 
 // ━━━ 모달 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function renderModal(){
-  return `<div class="modal-overlay" onclick="closeModalBg(event)">
+  return `<div class="mover" onclick="closeModalBg(event)">
     <div class="modal">
-      <div class="modal-handle"></div>
-      ${A.modal==='book'?renderBookModal()
-      :A.modal==='cls-form'?renderClsForm()
-      :A.modal==='bkg-view'?renderBkgView():''}
+      <div class="mh"></div>
+      ${A.modal==='book'?renderBookModal():A.modal==='cls-form'?renderClsForm():''}
     </div>
   </div>`;
 }
@@ -547,92 +721,65 @@ function renderModal(){
 function renderBookModal(){
   const cls=getClasses().find(c=>c.id===A.mData);if(!cls)return '';
   const rem=cls.capacity-bookCount(cls.id);
-  return `<div class="modal-title">수업 예약</div>
-    <div style="background:var(--green-light);border-radius:12px;padding:14px;margin-bottom:18px;border:1px solid var(--border-light)">
-      <div style="font-size:15px;font-weight:700;margin-bottom:4px">${cls.name}</div>
-      <div style="font-size:12px;color:var(--text-mid);line-height:1.7">${fmtDate(cls.date)}&nbsp;·&nbsp;${fmtTime(cls.time)}&nbsp;·&nbsp;${cls.duration}분</div>
-      <div style="font-size:12px;color:var(--text-mid)">강사: ${cls.instructor}&nbsp;&nbsp;|&nbsp;&nbsp;잔여 ${rem}자리</div>
-      <div style="font-size:14px;font-weight:700;color:var(--green-dark);margin-top:6px">${fmtMoney(cls.price)}</div>
+  return `<div class="mt">수업 예약</div>
+    <div style="background:var(--gl);border-radius:11px;padding:13px;margin-bottom:16px;border:1px solid var(--bl2)">
+      <div style="font-size:15px;font-weight:700;margin-bottom:3px">${cls.name}</div>
+      <div style="font-size:12px;color:var(--tm);line-height:1.7">${fmtDate(cls.date)}&nbsp;·&nbsp;${fmtTime(cls.time)}&nbsp;·&nbsp;${cls.duration}분</div>
+      <div style="font-size:12px;color:var(--tm)">강사: ${cls.instructor}&nbsp;·&nbsp;잔여 ${rem}자리</div>
+      <div style="font-size:14px;font-weight:700;color:var(--gd);margin-top:5px">${fmtMoney(cls.price)}</div>
     </div>
-    <div style="font-size:12px;font-weight:700;color:var(--text-sub);letter-spacing:.4px;margin-bottom:10px">결제 방식</div>
-    <div class="pay-options">
-      <div class="pay-option ${A.payMethod==='spot'?'selected':''}" onclick="A.payMethod='spot';render()">
-        <div class="pay-icon">🏠</div>
-        <div class="pay-label">현장 결제</div>
-        <div class="pay-desc">방문 시 결제</div>
+    <div class="card" style="background:#FFF8EC;border-color:#E8C97A;margin-bottom:14px;padding:10px 13px">
+      <div style="font-size:12px;color:#8A6830;font-weight:600">⏳ 예약 후 관리자 승인이 필요해요</div>
+      <div style="font-size:11px;color:var(--ts);margin-top:2px">승인 후 최종 확정됩니다</div>
+    </div>
+    <div style="font-size:11px;font-weight:700;color:var(--ts);letter-spacing:.3px;margin-bottom:9px">결제 방식</div>
+    <div class="popts">
+      <div class="popt ${A.payMethod==='spot'?'on':''}" onclick="A.payMethod='spot';render()">
+        <div class="pic">🏠</div><div class="plb">현장 결제</div><div class="pds">방문 시 결제</div>
       </div>
-      <div class="pay-option ${A.payMethod==='postpay'?'selected':''}" onclick="A.payMethod='postpay';render()">
-        <div class="pay-icon">📋</div>
-        <div class="pay-label">후불 결제</div>
-        <div class="pay-desc">수업 후 결제</div>
+      <div class="popt ${A.payMethod==='postpay'?'on':''}" onclick="A.payMethod='postpay';render()">
+        <div class="pic">📋</div><div class="plb">후불 결제</div><div class="pds">수업 후 결제</div>
       </div>
     </div>
-    <div class="pay-option disabled" style="border-radius:10px;padding:12px 14px;text-align:left;display:flex;align-items:center;gap:12px;margin-bottom:18px;background:var(--bg)">
+    <div class="popt dis" style="border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px;margin-bottom:16px;background:var(--bg)">
       <span style="font-size:20px">💳</span>
-      <div>
-        <div class="pay-label" style="color:var(--text-sub)">온라인 결제</div>
-        <div class="pay-desc">카드·간편결제</div>
-      </div>
-      <span class="pay-soon" style="margin-left:auto">준비 중</span>
+      <div><div class="plb" style="color:var(--ts)">온라인 결제</div><div class="pds">카드·간편결제</div></div>
+      <span class="psoon" style="margin-left:auto">준비 중</span>
     </div>
-    <div style="display:flex;gap:9px">
-      <button class="btn btn-outline btn-full" onclick="closeModal()">취소</button>
-      <button class="btn btn-primary btn-full" onclick="confirmBook('${cls.id}')">예약 확정</button>
+    <div style="display:flex;gap:8px">
+      <button class="btn bo bfull" onclick="closeModal()">취소</button>
+      <button class="btn bp bfull" onclick="confirmBook('${cls.id}')">예약 신청</button>
     </div>`;
 }
 
 function renderClsForm(){
   const c=A.editCls,cfg=getCfg();
   const catOpts=Object.entries(CATS).map(([k,v])=>`<option value="${k}" ${(c?.category||'healing')===k?'selected':''}>${v.label}</option>`).join('');
-  return `<div class="modal-title">${c?'수업 수정':'수업 추가'}</div>
-    <div class="form-group">
-      <label class="form-label">수업명</label>
-      <input class="form-input" id="fn" value="${c?.name||''}" placeholder="빈야사 싱잉볼">
+  return `<div class="mt">${c?'수업 수정':'수업 추가'}</div>
+    <div class="fg"><label class="fl">수업명</label><input class="fi" id="fn" value="${c?.name||''}" placeholder="빈야사 싱잉볼"></div>
+    <div class="frow">
+      <div class="fg"><label class="fl">날짜</label><input class="fi" id="fd" type="date" value="${c?.date||A.calDate}"></div>
+      <div class="fg"><label class="fl">시간</label><input class="fi" id="ft" type="time" value="${c?.time||'10:00'}"></div>
     </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">날짜</label><input class="form-input" id="fd" type="date" value="${c?.date||todayStr()}"></div>
-      <div class="form-group"><label class="form-label">시간</label><input class="form-input" id="ft" type="time" value="${c?.time||'10:00'}"></div>
+    <div class="frow">
+      <div class="fg"><label class="fl">소요(분)</label><input class="fi" id="fdu" type="number" value="${c?.duration||50}" min="10"></div>
+      <div class="fg"><label class="fl">정원(명)</label><input class="fi" id="fca" type="number" value="${c?.capacity||cfg.defaultCap}" min="1"></div>
     </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">소요(분)</label><input class="form-input" id="fdu" type="number" value="${c?.duration||50}" min="10"></div>
-      <div class="form-group"><label class="form-label">정원(명)</label><input class="form-input" id="fca" type="number" value="${c?.capacity||cfg.defaultCap}" min="1"></div>
+    <div class="frow">
+      <div class="fg"><label class="fl">가격(원)</label><input class="fi" id="fpr" type="number" value="${c?.price||cfg.defaultPrice}"></div>
+      <div class="fg"><label class="fl">카테고리</label><select class="fi" id="fct">${catOpts}</select></div>
     </div>
-    <div class="form-row">
-      <div class="form-group"><label class="form-label">가격(원)</label><input class="form-input" id="fpr" type="number" value="${c?.price||cfg.defaultPrice}"></div>
-      <div class="form-group"><label class="form-label">카테고리</label><select class="form-input" id="fct">${catOpts}</select></div>
+    <div class="fg"><label class="fl">강사</label><input class="fi" id="fin" value="${c?.instructor||cfg.instructor}"></div>
+    <div class="fg"><label class="fl">설명 (선택)</label><input class="fi" id="fds" value="${c?.description||''}" placeholder="한 줄 소개"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:${A._fsp?'11':'18'}px">
+      <input type="checkbox" id="fsp" ${A._fsp?'checked':''} style="width:17px;height:17px;accent-color:var(--gold)">
+      <label for="fsp" style="font-size:13px;font-weight:600;color:var(--gold);cursor:pointer">✨ 특별 클래스 메인 배너 노출</label>
     </div>
-    <div class="form-group"><label class="form-label">강사</label><input class="form-input" id="fin" value="${c?.instructor||cfg.instructor}"></div>
-    <div class="form-group"><label class="form-label">수업 설명 (선택)</label><input class="form-input" id="fds" value="${c?.description||''}" placeholder="한 줄 소개"></div>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:${A._fsp?'12':'20'}px">
-      <input type="checkbox" id="fsp" ${A._fsp?'checked':''} style="width:18px;height:18px;accent-color:var(--gold)">
-      <label for="fsp" style="font-size:13px;font-weight:600;color:var(--gold);cursor:pointer">✨ 특별 클래스로 메인 배너에 노출</label>
-    </div>
-    ${A._fsp?`<div class="form-group"><label class="form-label">배너 문구</label><input class="form-input" id="fsb" value="${c?.specialBadge||'이달의 특별 클래스'}"></div>`:''}
-    <div style="display:flex;gap:9px;margin-top:4px">
-      <button class="btn btn-outline btn-full" onclick="closeModal()">취소</button>
-      <button class="btn btn-primary btn-full" onclick="${c?`saveCls('${c.id}')`:'addCls()'}">저장</button>
+    ${A._fsp?`<div class="fg"><label class="fl">배너 문구</label><input class="fi" id="fsb" value="${c?.specialBadge||'이달의 특별 클래스'}"></div>`:''}
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="btn bo bfull" onclick="closeModal()">취소</button>
+      <button class="btn bp bfull" onclick="${c?`saveCls('${c.id}')`:'addCls()'}">저장</button>
     </div>`;
-}
-
-function renderBkgView(){
-  const cls=getClasses().find(c=>c.id===A.mData);if(!cls)return '';
-  const bkgs=getBookings().filter(b=>b.classId===cls.id&&b.status==='confirmed');
-  const spotCnt=bkgs.filter(b=>b.paymentMethod==='spot').length;
-  const postCnt=bkgs.filter(b=>b.paymentMethod==='postpay').length;
-  return `<div class="modal-title">${cls.name}</div>
-    <div style="background:var(--green-light);border-radius:12px;padding:14px;margin-bottom:16px;border:1px solid var(--border-light)">
-      <div style="font-size:12px;color:var(--text-mid)">${fmtDate(cls.date)}&nbsp;·&nbsp;${fmtTime(cls.time)}</div>
-      <div style="font-size:13px;font-weight:700;margin-top:4px">총 ${bkgs.length}명 / ${cls.capacity}명&nbsp;&nbsp;·&nbsp;&nbsp;🏠 현장 ${spotCnt}&nbsp;·&nbsp;📋 후불 ${postCnt}</div>
-    </div>
-    ${!bkgs.length?`<div class="empty" style="padding:22px"><div class="empty-icon">🎫</div><div class="empty-text">예약자가 없어요</div></div>`
-    :bkgs.map(b=>`<div class="booking-row">
-      <div>
-        <div style="font-size:14px;font-weight:700">${b.customerName}</div>
-        <div style="font-size:12px;color:var(--text-mid)">${b.customerPhone}&nbsp;&nbsp;·&nbsp;&nbsp;${b.paymentMethod==='spot'?'🏠 현장결제':'📋 후불결제'}</div>
-      </div>
-      <button class="check-btn ${b.checkedIn?'on':''}" onclick="toggleCheck('${b.id}')">${b.checkedIn?'✓':''}</button>
-    </div>`).join('')}
-    <button class="btn btn-outline btn-full" style="margin-top:18px" onclick="closeModal()">닫기</button>`;
 }
 
 // ━━━ 액션 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -643,33 +790,45 @@ function closeModalBg(e){if(e.target===e.currentTarget)closeModal();}
 function confirmBook(classId){
   const cls=getClasses().find(c=>c.id===classId);if(!cls)return;
   const bkgs=getBookings();
-  if(bkgs.find(b=>b.classId===classId&&b.customerPhone===A.user.phone&&b.status==='confirmed')){toast('이미 예약하신 수업이에요');return;}
+  if(myBkg(classId,A.user.phone)){toast('이미 예약 신청하셨어요');return;}
   if(bookCount(classId)>=cls.capacity){toast('정원이 마감되었어요');return;}
   bkgs.push({id:uid(),classId,customerName:A.user.name,customerPhone:A.user.phone,
-    paymentMethod:A.payMethod,paymentStatus:'pending',
-    checkedIn:false,status:'confirmed',amount:cls.price,createdAt:Date.now()});
+    paymentMethod:A.payMethod,status:'pending',checkedIn:false,
+    amount:cls.price,createdAt:Date.now()});
   saveBookings(bkgs);closeModal();
-  toast(A.payMethod==='spot'?'현장결제로 예약됐어요 🌿':'후불결제로 예약됐어요 🌿');
+  toast('예약 신청 완료! 관리자 승인을 기다려주세요 🌿');
 }
 
+function approveBook(id){
+  const bkgs=getBookings(),b=bkgs.find(x=>x.id===id);
+  if(b)b.status='confirmed';saveBookings(bkgs);toast('예약이 승인됐어요');render();
+}
+function rejectBook(id){
+  if(!confirm('예약을 거절하시겠어요?'))return;
+  const bkgs=getBookings(),b=bkgs.find(x=>x.id===id);
+  if(b)b.status='rejected';saveBookings(bkgs);toast('예약이 거절됐어요');render();
+}
 function cancelBkg(id){
   if(!confirm('예약을 취소하시겠어요?\n(당일 자정 이전까지만 가능)'))return;
   const bkgs=getBookings(),b=bkgs.find(x=>x.id===id);
   const cls=b?getClasses().find(c=>c.id===b.classId):null;
   if(cls&&!cancelOk(cls)){toast('당일 자정 이후에는 취소할 수 없어요');return;}
-  if(b)b.status='cancelled';
-  saveBookings(bkgs);toast('예약이 취소됐어요');render();
+  if(b)b.status='cancelled';saveBookings(bkgs);toast('예약이 취소됐어요');render();
 }
 
 function toggleCheck(id){
   const bkgs=getBookings(),b=bkgs.find(x=>x.id===id);
   if(b)b.checkedIn=!b.checkedIn;saveBookings(bkgs);render();
 }
+function toggleClosed(date){
+  const closed=getClosed();
+  const idx=closed.indexOf(date);
+  if(idx>=0)closed.splice(idx,1);else closed.push(date);
+  saveClosed(closed);toast(idx>=0?'휴무가 해제됐어요':'휴무일로 지정됐어요');render();
+}
 
-function viewBkg(id){A.modal='bkg-view';A.mData=id;render();}
 function openAddCls(){A.modal='cls-form';A.editCls=null;A._fsp=false;render();}
 function editCls(id){A.editCls=getClasses().find(c=>c.id===id)||null;A._fsp=A.editCls?.isSpecial||false;A.modal='cls-form';render();}
-
 function delCls(id){
   if(!confirm('수업을 삭제하시겠어요?'))return;
   saveClasses(getClasses().filter(c=>c.id!==id));
@@ -677,8 +836,17 @@ function delCls(id){
   toast('수업이 삭제됐어요');render();
 }
 
+function markSpecial(id){
+  const cls=getClasses(),i=cls.findIndex(c=>c.id===id);
+  if(i>=0)cls[i].isSpecial=true;saveClasses(cls);toast('특별 클래스로 등록됐어요 ✨');render();
+}
+function unmarkSpecial(id){
+  const cls=getClasses(),i=cls.findIndex(c=>c.id===id);
+  if(i>=0)cls[i].isSpecial=false;saveClasses(cls);toast('배너에서 해제됐어요');render();
+}
+
 function getFormData(){
-  return {
+  return{
     name:document.getElementById('fn')?.value.trim(),
     date:document.getElementById('fd')?.value,
     time:document.getElementById('ft')?.value,
@@ -692,18 +860,16 @@ function getFormData(){
     specialBadge:document.getElementById('fsb')?.value.trim()||'이달의 특별 클래스',
   };
 }
-
 function addCls(){
   const f=getFormData();
-  if(!f.name||!f.date||!f.time||!f.duration||!f.capacity||!f.price){toast('필수 항목을 모두 입력해주세요');return;}
+  if(!f.name||!f.date||!f.time||!f.duration||!f.capacity||!f.price)return toast('필수 항목을 모두 입력해주세요');
   const cls=getClasses();
   cls.push({id:uid(),...f,instructor:f.instructor||getCfg().instructor,createdAt:Date.now()});
   saveClasses(cls);closeModal();toast('수업이 추가됐어요');
 }
-
 function saveCls(id){
   const f=getFormData();
-  if(!f.name||!f.date||!f.time||!f.duration||!f.capacity||!f.price){toast('필수 항목을 모두 입력해주세요');return;}
+  if(!f.name||!f.date||!f.time||!f.duration||!f.capacity||!f.price)return toast('필수 항목을 모두 입력해주세요');
   const cls=getClasses(),i=cls.findIndex(c=>c.id===id);if(i<0)return;
   cls[i]={...cls[i],...f};saveClasses(cls);closeModal();toast('수업이 수정됐어요');
 }

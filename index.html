@@ -245,6 +245,7 @@ function genSched(){
 
 // ━━━ 유틸 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function uid(){return 'id_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 const DAYS=['일','월','화','수','목','금','토'];
 function fmtDate(s){const d=new Date(s+'T00:00:00');return `${d.getMonth()+1}월 ${d.getDate()}일 (${DAYS[d.getDay()]})`;}
 function fmtTime(t){const[h,m]=t.split(':').map(Number);return `${h<12?'오전':'오후'} ${h<=12?h:h-12}:${String(m).padStart(2,'0')}`;}
@@ -339,7 +340,7 @@ function renderCustomer(){
   return `<div>
     <div class="hdr">
       <div><div class="wm">B<span style="color:var(--blush)">.</span>ONE WELLNESS</div>
-      <div class="hs">안녕하세요, ${A.user.name}님 👋</div></div>
+      <div class="hs">안녕하세요, ${esc(A.user.name)}님 👋</div></div>
       <button class="bt" onclick="logout()">로그아웃</button>
     </div>
     <div class="content">${A.cTab==='schedule'?renderSchedule():renderMyBkgs()}</div>
@@ -620,7 +621,7 @@ function renderCal(){
           ${!dayBkgs.length?`<div style="font-size:12px;color:var(--ts);text-align:center;padding:8px">예약자가 없어요</div>`
           :dayBkgs.map(b=>`<div class="brow">
             <div>
-              <div style="font-size:13px;font-weight:700">${b.customerName}
+              <div style="font-size:13px;font-weight:700">${esc(b.customerName)}
                 ${b.status==='pending'?`<span class="badge bw2" style="font-size:10px;margin-left:4px">대기</span>`:`<span class="badge bg" style="font-size:10px;margin-left:4px">확정</span>`}
               </div>
               <div style="font-size:11px;color:var(--tm)">${b.customerPhone}&nbsp;·&nbsp;${b.paymentMethod==='spot'?'🏠 현장':'📋 후불'}</div>
